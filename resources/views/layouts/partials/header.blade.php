@@ -22,6 +22,12 @@
                             </li>
                         @endif
                     @else
+                        <li class="nav-item">
+                            <a @class([
+                                'nav-link',
+                                'active' => Route::currentRouteName() == 'admin.projects.index',
+                            ]) href="{{ route('admin.projects.index') }}">Progetti</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
                                 data-bs-toggle="dropdown" href="#" id="navbarDropdown" role="button" v-pre>
