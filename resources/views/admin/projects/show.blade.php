@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    {{ $project->title }}
+@endsection
+
 @section('content')
     <div class="container">
         <a href="{{ route('admin.projects.index') }}" class="btn btn-primary mt-5">Torna alla lista</a>

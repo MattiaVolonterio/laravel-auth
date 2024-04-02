@@ -1,8 +1,12 @@
 @extends('layouts.app')
 
+@section('title', 'Progetti')
+
 @section('content')
     <div class="container">
         <h1 class="my-3">Lista Progetti</h1>
+
+        <a href="{{ route('admin.projects.create') }}" class="btn btn-primary mb-3">Crea Nuovo Progetto</a>
 
         <table class="table">
             <thead>
