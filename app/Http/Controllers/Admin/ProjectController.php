@@ -39,7 +39,7 @@ class ProjectController extends Controller
         $new_project->fill($data);
         $new_project->save();
 
-        return redirect()->route('admin.projects.show', $new_project);
+        return redirect()->route('admin.projects.show', $new_project)->with('message', 'Progetto creato con successo');
     }
 
     /**
@@ -72,7 +72,7 @@ class ProjectController extends Controller
     {
         $data = $request->all();
         $project->update($data);
-        return redirect()->route('admin.projects.show', compact('project'));
+        return redirect()->route('admin.projects.show', compact('project'))->with('message', 'Progetto modificato con successo');
     }
 
     /**
@@ -83,6 +83,6 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
-        return redirect()->route('admin.projects.index');
+        return redirect()->route('admin.projects.index')->with('message', 'Progetto eliminato con successo');
     }
 }
