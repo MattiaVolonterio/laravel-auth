@@ -22,7 +22,8 @@
                         <td>{{ $project->author }}</td>
                         <td><a href="{{ $project->project_link }}" target="_blank">Vai alla pagina del progetto</a></td>
                         <td>
-                            <a href="" class="me-2"><i class="fa-solid fa-eye"></i></a>
+                            <a href="{{ route('admin.projects.show', $project) }}" class="me-2"><i
+                                    class="fa-solid fa-eye"></i></a>
                             <a href="" class="me-2"><i class="fa-solid fa-pen-to-square"></i></a>
                         </td>
                     </tr>
