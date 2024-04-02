@@ -34,6 +34,9 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate_form($request);
+
         $data = $request->all();
         $new_project = new Project;
         $new_project->fill($data);
@@ -70,6 +73,9 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
+
+        $this->validate_form($request);
+
         $data = $request->all();
         $project->update($data);
         return redirect()->route('admin.projects.show', compact('project'))->with('message', 'Progetto modificato con successo');
@@ -84,5 +90,25 @@ class ProjectController extends Controller
     {
         $project->delete();
         return redirect()->route('admin.projects.index')->with('message', 'Progetto eliminato con successo');
+    }
+
+    private function validate_form($request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:100',
+            'author' => 'required|string|max:100',
+            'description' => 'string|nullable',
+            'project_link' => 'required|url'
+        ], [
+            'title.required' => 'Il titolo non può essere vuoto',
+            'title.string' => "Il titolo dev'essere una stringa",
+            'title.max' => 'La lunghezza massima è di 100 caratteri',
+            'author.required' => "L'autore non può essere vuoto",
+            'author.string' => "Il campo autore dev'essere una stringa",
+            'author.max' => 'La lunghezza massima è di 100 caratteri',
+            'description.string' => "La descrizione dev'essere un testo",
+            'project_link.required' => "Il link non può essere vuoto",
+            'project_link.url' => "Il link dev'essere un URL valido"
+        ]);
     }
 }
