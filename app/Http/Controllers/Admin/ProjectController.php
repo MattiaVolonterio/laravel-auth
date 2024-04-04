@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateProjectRequest;
+use App\Http\Requests\EditProjectRequest;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
@@ -32,10 +34,10 @@ class ProjectController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      */
-    public function store(Request $request)
+    public function store(CreateProjectRequest $request)
     {
 
-        $this->validate_form($request);
+        $request->validated();
 
         $data = $request->all();
         $new_project = new Project;
@@ -71,10 +73,10 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Project  $project
      */
-    public function update(Request $request, Project $project)
+    public function update(EditProjectRequest $request, Project $project)
     {
 
-        $this->validate_form($request);
+        $request->validated();
 
         $data = $request->all();
         $project->update($data);
@@ -90,25 +92,5 @@ class ProjectController extends Controller
     {
         $project->delete();
         return redirect()->route('admin.projects.index')->with('message', 'Progetto eliminato con successo');
-    }
-
-    private function validate_form($request)
-    {
-        $request->validate([
-            'title' => 'required|string|max:100',
-            'author' => 'required|string|max:100',
-            'description' => 'string|nullable',
-            'project_link' => 'required|url'
-        ], [
-            'title.required' => 'Il titolo non può essere vuoto',
-            'title.string' => "Il titolo dev'essere una stringa",
-            'title.max' => 'La lunghezza massima è di 100 caratteri',
-            'author.required' => "L'autore non può essere vuoto",
-            'author.string' => "Il campo autore dev'essere una stringa",
-            'author.max' => 'La lunghezza massima è di 100 caratteri',
-            'description.string' => "La descrizione dev'essere un testo",
-            'project_link.required' => "Il link non può essere vuoto",
-            'project_link.url' => "Il link dev'essere un URL valido"
-        ]);
     }
 }

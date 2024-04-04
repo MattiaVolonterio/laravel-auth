@@ -13,7 +13,6 @@
             Elimina
         </button>
 
-
         <h1 class="mt-3 fw-bold">{{ $project->title }}</h1>
         <span class="d-inline-block me-2">Created By</span><code class="d-inline-block fs-5">{{ $project->author }}</code>
 

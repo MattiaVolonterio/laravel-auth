@@ -18,7 +18,7 @@
                 <div class="col-6">
                     <label for="title" class="form-label">Titolo</label>
                     <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
-                        name="title" value="{{ $errors->any() ? old('title') : $project->title }}" required>
+                        name="title" value="{{ $errors->any() ? old('title') : $project->title }}">
 
                     @error('title')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -28,7 +28,7 @@
                 <div class="col-6">
                     <label for="author" class="form-label">Autore</label>
                     <input type="text" class="form-control @error('author') is-invalid @enderror" id="author"
-                        name="author" value="{{ $errors->any() ? old('author') : $project->author }}" required>
+                        name="author" value="{{ $errors->any() ? old('author') : $project->author }}">
 
                     @error('author')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -38,8 +38,7 @@
                 <div class="col-12">
                     <label for="project_link" class="form-label">Link al progetto</label>
                     <input type="url" class="form-control @error('project_link') is-invalid @enderror" id="project_link"
-                        name="project_link" value="{{ $errors->any() ? old('project_link') : $project->project_link }}"
-                        required>
+                        name="project_link" value="{{ $errors->any() ? old('project_link') : $project->project_link }}">
 
                     @error('project_link')
                         <div class="invalid-feedback">{{ $message }}</div>

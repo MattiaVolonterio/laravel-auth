@@ -7,11 +7,23 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mb-2 mb-lg-0 w-100">
-                    <li class="nav-item flex-grow-1">
+                <ul class="navbar-nav mb-2 me-auto mb-lg-0">
+                    <li class="nav-item">
                         <a @class(['nav-link', 'active' => Route::currentRouteName() == 'home']) aria-current="page" href="{{ route('home') }}">Home</a>
                     </li>
 
+                    @auth
+                        <li class="nav-item">
+                            <a @class([
+                                'nav-link',
+                                'active' => Route::currentRouteName() == 'admin.projects.index',
+                            ]) href="{{ route('admin.projects.index') }}">Progetti</a>
+                        </li>
+                    @endauth
+
+                </ul>
+
+                <ul class="navbar-nav mb-2 mb-lg-0">
                     @guest
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">Login</a>
@@ -22,12 +34,6 @@
                             </li>
                         @endif
                     @else
-                        <li class="nav-item">
-                            <a @class([
-                                'nav-link',
-                                'active' => Route::currentRouteName() == 'admin.projects.index',
-                            ]) href="{{ route('admin.projects.index') }}">Progetti</a>
-                        </li>
                         <li class="nav-item dropdown">
                             <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
                                 data-bs-toggle="dropdown" href="#" id="navbarDropdown" role="button" v-pre>
@@ -47,6 +53,7 @@
                             </div>
                         </li>
                     @endguest
+                </ul>
             </div>
         </div>
     </nav>
